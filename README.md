@@ -1,1 +1,1 @@
-# Converto - Currency Coverter App
+# Converto - Currency Converter App
