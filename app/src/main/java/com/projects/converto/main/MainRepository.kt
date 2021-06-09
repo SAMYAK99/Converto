@@ -5,5 +5,6 @@ import com.projects.converto.utils.Resource
 
 
 interface MainRepository {
+
     suspend fun getRates(base: String): Resource<CurrencyResponse>
 }
