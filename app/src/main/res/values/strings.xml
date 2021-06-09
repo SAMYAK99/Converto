@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Converto</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="samyak">Samyak</string>
+    <string name="make_birthday_card">Make Birthday Card</string>
     <string-array name="currency_codes">
         <item>CAD</item>
         <item>EUR</item>
