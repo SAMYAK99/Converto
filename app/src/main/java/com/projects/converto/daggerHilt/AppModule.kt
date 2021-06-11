@@ -2,6 +2,9 @@ package com.projects.converto.daggerHilt
 
 
 import com.projects.converto.data.CurrencyApi
+import com.projects.converto.main.DefaultMainRepository
+import com.projects.converto.main.MainRepository
+import com.projects.converto.utils.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://api.exchangeratesapi.io/"
+private const val BASE_URL = "http://api.exchangeratesapi.io"
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -26,20 +29,20 @@ object AppModule {
         .build()
         .create(CurrencyApi::class.java)
 
-//    @Singleton
-//    @Provides
-//    fun provideMainRepository(api: CurrencyApi): MainRepository = DefaultMainRepository(api)
-//
-//    @Singleton
-//    @Provides
-//    fun provideDispatchers(): DispatcherProvider = object : DispatcherProvider {
-//        override val main: CoroutineDispatcher
-//            get() = Dispatchers.Main
-//        override val io: CoroutineDispatcher
-//            get() = Dispatchers.IO
-//        override val default: CoroutineDispatcher
-//            get() = Dispatchers.Default
-//        override val unconfined: CoroutineDispatcher
-//            get() = Dispatchers.Unconfined
-//    }
+    @Singleton
+    @Provides
+    fun provideMainRepository(api: CurrencyApi): MainRepository = DefaultMainRepository(api)
+
+    @Singleton
+    @Provides
+    fun provideDispatchers(): DispatcherProvider = object : DispatcherProvider {
+        override val main: CoroutineDispatcher
+            get() = Dispatchers.Main
+        override val io: CoroutineDispatcher
+            get() = Dispatchers.IO
+        override val default: CoroutineDispatcher
+            get() = Dispatchers.Default
+        override val unconfined: CoroutineDispatcher
+            get() = Dispatchers.Unconfined
+    }
 }
